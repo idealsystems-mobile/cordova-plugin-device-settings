@@ -39,4 +39,17 @@
 	<config-file target="AndroidManifest.xml" parent="/manifest">
   	  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 	</config-file>
+	
+	<!-- windows -->
+    <platform name="wp8">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="PhoneSettings" >
+                <param name="wp-package" value="PhoneSettings"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp8/PhoneSettings.cs" />
+
+    </platform>
 </plugin>

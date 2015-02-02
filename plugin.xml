@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="be.idealsystems.cordova.phonesettings"
+        version="0.0.1">
+    <name>PhoneSettings</name>
+    <description>Ideal Systems PhoneSettings Plugin</description>
+    <license>MIT</license>
+    <keywords>cordova,phoneSettings</keywords>
+
+    <js-module src="www/phoneSettings.js" name="PhoneSettings">
+        <clobbers target="window.phoneSettings" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PhoneSettings" >
+                <param name="android-package" value="be.idealsystems.cordova.phonesettings.PhoneSettings"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/PhoneSettings.java" target-dir="src/be/idealsystems/cordova/phonesettings" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PhoneSettings">
+                <param name="ios-package" value="PhoneSettings"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/PhoneSettings.h" />
+        <source-file src="src/ios/PhoneSettings.m" />
+    </platform>
+
+	<config-file target="AndroidManifest.xml" parent="/manifest">
+  	  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	</config-file>
+</plugin>

@@ -13,7 +13,7 @@ namespace Cordova.Extension.Commands {
 
         public void isPhone(string options) {
             try {
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, !calculateIsTablet()));
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, (!calculateIsTablet()).ToString().ToLower()));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.isPhone error"));
@@ -22,7 +22,7 @@ namespace Cordova.Extension.Commands {
 		
 		public void isTablet(string options) {
             try {
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, calculateIsTablet()));
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, (calculateIsTablet()).ToString().ToLower()));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.isTablet error"));
@@ -32,7 +32,7 @@ namespace Cordova.Extension.Commands {
 		public void getPhoneNumber(string options) {
             try {
                 
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, "0473780634"));
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.getPhoneNumber error"));

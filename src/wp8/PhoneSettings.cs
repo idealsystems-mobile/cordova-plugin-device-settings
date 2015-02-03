@@ -41,7 +41,7 @@ namespace Cordova.Extension.Commands {
 		
 		public void fixPortrait(string options) {
             try {
-				Console.Write("Plugin PhoneSettings.fixPortrait");
+				System.Console.Write("Plugin PhoneSettings.fixPortrait");
 				string optVal = JsonHelper.Deserialize<string[]>(options)[0];
                 DispatchCommandResult();
             } catch (System.Exception) {

@@ -40,46 +40,38 @@ namespace Cordova.Extension.Commands {
         }
 		
 		public void fixPortrait(string options) {
-            try {
-				//System.Console.Write("Plugin PhoneSettings.fixPortrait");
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, true));
-            } catch (System.Exception) {
-                // TVB - Return error
-                DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.fixPortrait error"));
-            }
+			DispatchCommandResult(setSupportedOrientations(SupportedPageOrientation.Portrait));
         }
 		
 		public void allowRotation(string options) {
-            try {
+			DispatchCommandResult(setSupportedOrientations(SupportedPageOrientation.PortraitOrLandscape));
+        }
+		
+		private PluginResult setSupportedOrientations(SupportedPageOrientation orientation) {
+			try {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     PhoneApplicationFrame frame;
                     PhoneApplicationPage page;
 
-                    if (TryCast(Application.Current.RootVisual, out frame) &&
-                      TryCast(frame.Content, out page))
-                    {
-                        page.SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
-                        
+                    if (TryCast(Application.Current.RootVisual, out frame) && TryCast(frame.Content, out page)) {
+                        page.SupportedOrientations = orientation;
                     }
                 });
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, true));
+                return new PluginResult(PluginResult.Status.OK, true);
             } catch (System.Exception) {
                 // TVB - Return error
-                DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.allowRotation error"));
+                return new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.allowRotation error");
             }
-        }
+		}
 
-        static bool TryCast<T>(object obj, out T result) where T : class
-        {
+        private static bool TryCast<T>(object obj, out T result) where T : class {
             result = obj as T;
             return result != null;
         }
 
-        private bool calculateIsTablet()
-        {
+        private bool calculateIsTablet() {
             return false;
         }
-
     }
 }

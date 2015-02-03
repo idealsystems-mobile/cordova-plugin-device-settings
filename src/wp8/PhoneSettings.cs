@@ -24,7 +24,8 @@ namespace Cordova.Extension.Commands {
 		
 		public void getPhoneNumber(string options) {
             try {
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, "0473780634"));
+				//TVB - Retrieving the phone number is not allowed in windows, therefore we're returning an empty string.
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.getPhoneNumber error"));
@@ -49,10 +50,9 @@ namespace Cordova.Extension.Commands {
             }
         }
 
-        private bool calculateIsTablet()
-        {
+        private bool calculateIsTablet() {
+			//TVB - Currently no tablets are supported so no need to do calculations
             return false;
         }
-
     }
 }

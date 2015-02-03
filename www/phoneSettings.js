@@ -27,6 +27,7 @@ var phoneSettings = {
         ); 
      },
      fixPortrait: function(successCallback, errorCallback) {
+		console.log("plugin js fixPortrait");
          cordova.exec(
             successCallback, // returns true/false
             errorCallback, // error callback function

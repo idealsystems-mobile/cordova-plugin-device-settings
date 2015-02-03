@@ -63,7 +63,7 @@ namespace Cordova.Extension.Commands {
                         
                     }
                 });
-                DispatchCommandResult();
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, true));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.allowRotation error"));

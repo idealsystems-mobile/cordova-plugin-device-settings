@@ -2,8 +2,15 @@ using WPCordovaClassLib.Cordova;
 using WPCordovaClassLib.Cordova.Commands;
 using WPCordovaClassLib.Cordova.JSON;
 
+using Microsoft.Phone.Controls;
+using System.Windows;
+
 namespace Cordova.Extension.Commands {
     public class PhoneSettings : BaseCommand {
+        private const string UNLOCKED = "unlocked";
+        private const string PORTRAIT = "portrait";
+        private const string LANDSCAPE = "landscape";
+
         public void isPhone(string options) {
             try {
                 DispatchCommandResult(new PluginResult(PluginResult.Status.OK, !calculateIsTablet()));
@@ -24,8 +31,8 @@ namespace Cordova.Extension.Commands {
 		
 		public void getPhoneNumber(string options) {
             try {
-				//TVB - Retrieving the phone number is not allowed in windows, therefore we're returning an empty string.
-                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, ""));
+                
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, "0473780634"));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.getPhoneNumber error"));
@@ -43,6 +50,18 @@ namespace Cordova.Extension.Commands {
 		
 		public void allowRotation(string options) {
             try {
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    PhoneApplicationFrame frame;
+                    PhoneApplicationPage page;
+
+                    if (TryCast(Application.Current.RootVisual, out frame) &&
+                      TryCast(frame.Content, out page))
+                    {
+                        page.SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
+                        
+                    }
+                });
                 DispatchCommandResult();
             } catch (System.Exception) {
                 // TVB - Return error
@@ -50,9 +69,16 @@ namespace Cordova.Extension.Commands {
             }
         }
 
-        private bool calculateIsTablet() {
-			//TVB - Currently no tablets are supported so no need to do calculations
+        static bool TryCast<T>(object obj, out T result) where T : class
+        {
+            result = obj as T;
+            return result != null;
+        }
+
+        private bool calculateIsTablet()
+        {
             return false;
         }
+
     }
 }

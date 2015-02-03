@@ -24,7 +24,7 @@ namespace Cordova.Extension.Commands {
 		
 		public void getPhoneNumber(string options) {
             try {
-                
+                DispatchCommandResult(new PluginResult(PluginResult.Status.OK, "0473780634"));
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.getPhoneNumber error"));
@@ -33,7 +33,7 @@ namespace Cordova.Extension.Commands {
 		
 		public void fixPortrait(string options) {
             try {
-                
+                DispatchCommandResult();
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.fixPortrait error"));
@@ -42,7 +42,7 @@ namespace Cordova.Extension.Commands {
 		
 		public void allowRotation(string options) {
             try {
-                
+                DispatchCommandResult();
             } catch (System.Exception) {
                 // TVB - Return error
                 DispatchCommandResult(new PluginResult(PluginResult.Status.ERROR, "PhoneSettings.allowRotation error"));

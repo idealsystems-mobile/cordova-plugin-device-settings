@@ -40,9 +40,8 @@
   	  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 	</config-file>
 	
-	<!-- windows -->
+	<!-- windows8 -->
     <platform name="wp8">
-
         <config-file target="config.xml" parent="/*">
             <feature name="PhoneSettings" >
                 <param name="wp-package" value="PhoneSettings"/>
@@ -50,6 +49,12 @@
         </config-file>
 
         <source-file src="src/wp8/PhoneSettings.cs" />
-
+    </platform>
+	
+	<!-- windows universal apps (Windows 8.1, Windows Phone 8.1, Windows 8.0) -->
+    <platform name="windows">
+        <js-module src="src/windows/PhoneSettingsProxy.js" name="PhoneSettingsProxy">
+            <merges target="" />
+        </js-module>
     </platform>
 </plugin>

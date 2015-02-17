@@ -14,10 +14,12 @@ module.exports = {
         success(!isThisAPhone);
      },
      fixPortrait: function(success, fail, args) {
-         success(isThisAPhone);
+         Windows.Graphics.Display.DisplayInformation.autoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.portrait;
+         success(true);
      },
      allowRotation: function(success, fail, args) {
-         success(!isThisAPhone);
+         Windows.Graphics.Display.DisplayInformation.autoRotationPreferences = Windows.Graphics.Display.DisplayOrientations.none;
+         success(true);
      }
 }
 

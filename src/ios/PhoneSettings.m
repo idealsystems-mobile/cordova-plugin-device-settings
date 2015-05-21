@@ -14,10 +14,9 @@
     
     // Cordova Result object and string to send to JS
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     
     
-    NSLog(@"the object value is:%u",[(NSString*)[UIDevice currentDevice].model rangeOfString:@"iPhone" options:NSCaseInsensitiveSearch].location);
+    NSLog(@"the object value is:%lu",(unsigned long)[(NSString*)[UIDevice currentDevice].model rangeOfString:@"iPhone" options:NSCaseInsensitiveSearch].location);
     NSLog(@"the object value is:%@",[UIDevice currentDevice].model);
     
     if([(NSString*)[UIDevice currentDevice].model rangeOfString:@"iPhone" options:NSCaseInsensitiveSearch].location != NSNotFound ) {
@@ -26,15 +25,13 @@
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"false"];
     }
     
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) isTablet:(CDVInvokedUrlCommand *)command{
     
     // Cordova Result object and string to send to JS
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     
     if([(NSString*)[UIDevice currentDevice].model rangeOfString:@"iPad" options:NSCaseInsensitiveSearch].location != NSNotFound ) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"true"];
@@ -42,21 +39,18 @@
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"false"];
     }
     
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) getPhoneNumber:(CDVInvokedUrlCommand *)command{
     
     // Cordova Result object and string to send to JS
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     
     NSLog(@"in the getPhoneNumber method");
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
 }
 
@@ -64,27 +58,22 @@
     
     // Cordova Result object and string to send to JS
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     
-    NSLog(@"in the getPhoneNumber method");
+    NSLog(@"in the fixPortrait method");
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
-
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 -(void) allowRotation:(CDVInvokedUrlCommand *)command{
     
     // Cordova Result object and string to send to JS
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     
-    NSLog(@"in the getPhoneNumber method");
+    NSLog(@"in the allowRotation method");
     
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
 }
 
